@@ -64,7 +64,7 @@ const Home: React.FC = () => {
                 <th>Nome</th>
                 <th>Preço (USD)</th>
             </tr>
-            {typeisCrypto.slice(0, 12).map((asset, index) => (
+            {typeisCrypto.slice(0, 10).map((asset, index) => (
             <tr key={asset.asset_id}>
               <td>
                 {index + 1}
