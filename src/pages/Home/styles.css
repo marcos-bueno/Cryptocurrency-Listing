@@ -135,7 +135,7 @@ img.mover {
 
 @media screen and (min-width: 360px) {
   .rwd-table {
-    margin: 20px 20px;
+    margin: 20px 20px 30px 20px;
   }
 
   .rwd-table tr:hover:not(:first-child) {
