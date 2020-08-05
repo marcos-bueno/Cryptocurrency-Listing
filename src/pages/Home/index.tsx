@@ -8,27 +8,18 @@ interface Asset {
   asset_id: string;
   name: string;
   price_usd: number;
-  formattedPrice?: string;
+  formattedUSD?: string;
 }
-
-// interface Rate {
-//   asset_id_base: string;
-//   rates: {
-//     asset_id_quote: string;
-//     rate: number;
-//   }
-// }
 
 const Home: React.FC = () => {
   const [assets, setAssets] = useState<Asset[]>([]);
-  // const [rates, setRates] = useState<Rate[]>([]);
 
   useEffect(() => {
     api.get<Asset[]>('/v1/assets').then((response) => {
       const assetsFormatted = response.data.map((asset) => {
         return {
           ...asset,
-          formattedPrice: new Intl.NumberFormat('en-IN',
+          formattedUSD: new Intl.NumberFormat('en-IN',
             { style: 'currency', currency: 'USD' })
             .format(asset.price_usd),
         };
@@ -38,7 +29,7 @@ const Home: React.FC = () => {
 }, []);
 
   const typeisCrypto = useMemo(() => {
-    return assets.filter(asset => {
+    return assets.filter((asset) => {
       return asset.type_is_crypto === 1;
     });
   }, [assets]);
@@ -73,7 +64,7 @@ const Home: React.FC = () => {
                 {asset.name}
               </td>
               <td>
-                {asset.formattedPrice}
+                {asset.formattedUSD}
               </td>
             </tr>
             ))}
